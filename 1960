@@ -1,0 +1,52 @@
+import random 
+import time
+
+main_run = True # Старший движок
+counter = 0 # Счетчик попыток
+while main_run:
+    run = True # Средний движок
+    while run:
+        print()
+        print("Добро пожаловать в игру угадай число!")
+        print('1 - "Прочитать правила игры" \n2 - "Начать игру"')
+        page_1 = int(input(">> "))
+        if page_1 == 1:
+            print()
+            print("Правила игры: ")
+            print("Компьютер загадывает число в диапозон\nот 1 до 1960 и вашa задача его угадать.")
+        elif page_1 == 2:
+            rand = random.randint(1, 1960)
+            zero = 0
+            mini_run = True
+            _max = ["Слишком высоко", "Попробуйте число поменьше", "Слишком много", "Меньше"]
+            _min = ["Слишком мало", "Мимо, попробуй побольше", "Выше", "Число слишком маленькое"]
+            for i in range(3):
+                zero += 1
+                print(zero)
+                time.sleep(1)
+            print("Начаинаем!!!")
+            while mini_run:
+                start = int(input("Введите число: "))
+                if start > rand:
+                    print(random.choice(_max))
+                    counter += 1
+                elif start < rand:
+                    print(random.choice(_min))
+                    counter += 1
+                else:
+                    print()
+                    print("Ура, ты угадал!!!")
+                    print("Вот счетчик твоих попыток: ", counter)
+                    print("1 - Еще раз \n2 - Конец")
+                    end = int(input("Введите ваш выбор: "))
+                    if end == 1:
+                        continue
+                    elif end == 2:
+                        print("Спасибо за игру досвидания!")
+                        main_run = False
+                        run = False
+                        mini_run = False
+                    else:
+                        print("Ох похожe вы перепутали числою")
+        else:
+            print("Такой команды не существует >*_*<")
